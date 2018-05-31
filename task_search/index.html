@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.selected{
+		background: green;
+	}
+	.contain{
+		position: fixed;
+		top: 50px;
+		right: 50px;
+	}
+	.contain input[type="submit"]{
+		padding: 8px 18px;
+		border: none;
+		color: white;
+		background: blueviolet;
+		border-radius: 4px;
+		text-transform: uppercase;
+		outline: none;
+		cursor: pointer;
+	}
+	.contain input[type="text"]{
+		padding: 6px;
+		border: none;
+		outline: none;
+		color: #4f5758;
+		font-size: 1em;
+	}
+	#text{
+		width: 700px;
+		margin: 100px auto;
+		padding: 20px;
+		border: 1px solid #ccc;
+		box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	}
+</style>
+</head>
+<body>
+	
+
+	<div id="text">
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+	</div> 
+	<div class="contain">
+		<input type="text" placeholder="Enter word..." id="input" oninput="init()">
+		<input type="submit" value="search" onclick="init()">
+	</div>
+
+
+	<script>
+		let string = text.innerHTML; 
+		function init(a){
+			if(!input.value){
+				let selecteds = document.querySelectorAll(".selected");
+				for (let elem of selecteds) {
+					elem.style.background = "white";
+				}
+				return;
+			};
+			text.innerHTML = "";
+			let _input = input.value;
+			let newStr = string.split(_input); 
+			for(let i = 0; i< newStr.length; i++){
+				text.innerHTML+= newStr[i]; 
+				if(i < newStr.length-1){
+					text.innerHTML+= `<span class="selected">${_input}</span>`
+				}
+			}
+		} 
+	</script> 
+</body>
+</html>
